@@ -1,0 +1,68 @@
+{% load static %}
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hu Tao</title>
+    <link rel="stylesheet" href="{% static './css/style.css' %}">
+    <link rel="shortcut icon" href="{% static './img/SiteIcon.webp' %}" type="image/x-icon">
+</head>
+<body>
+<header class="header" id="header" style="padding-bottom: 15px;">
+    <div class="container">
+        <a href="#" class="burger-menu-button" onclick="burgerMenuAction()"><img
+                src="{% static './img/butterfly_menu_icon.webp' %}" width="45px" height="45px"></a>
+        <div class="menu-list">
+            <img src="{% static './img/butterfly_menu_icon.webp' %}" width="60px">
+            <a href="{% url 'homePage' %}">Main</a>
+            <a href="{% url 'aboutPage' %}">About</a>
+            <a href="https://candybox2.github.io/candybox/" target="_blank">For Fun</a>
+            <a href="#" class="authorization" id="SignUpBtn">Sign Up</a>
+        </div>
+        <div class="mobile-menu-list" id="mobile-menu-list" style="display: none;">
+            <a href="{% url 'homePage' %}">Main</a>
+            <a href="{% url 'aboutPage' %}">About</a>
+            <a href="https://candybox2.github.io/candybox/" target="_blank">For Fun</a>
+            <a href="#" class="authorization" id="SignUpBtn">Sign Up</a>
+        </div>
+    </div>
+</header>
+
+{% block content %}
+{% endblock %}
+
+<footer class="footer">
+    <div class="container">
+        <p>&copy;Wangsheng Funeral Parlor</p>
+    </div>
+</footer>
+<div id="Modal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>Sign Up</h2>
+        </div>
+        <div class="modal-body">
+            <p>
+                <label for="mname">First name:</label>
+                <input type="text" name="SignUpName" id="SignUpName" placeholder="Enter the name">
+                <label for="memail">Email:</label>
+                <input type="email" name="SignUpEmail" id="SignUpEmail" placeholder="Enter the email">
+                <label for="mpassword">Password:</label>
+                <input type="password" name="SignUpPassword" id="SignUpPassword" placeholder="Enter the password">
+            </p>
+            <button>Sign Up</button>
+        </div>
+        <div class="modal-footer">
+            <h3>Already have acc?</h3>
+            <button>Log In</button>
+        </div>
+    </div>
+</div>
+<script src="{% static './scripts/script.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Hu
+{% endblock %}
+
+{% block content %}
+
+<div class="content">
+    <div class="main">
+        <div class="container">
+            <h1>Tao</h1>
+            <p>The 77th Director of the Wangsheng Funeral Parlor. She took over the business at a rather young age.</p>
+            <a href="#" class="main-button">Read</a>
+        </div>
+    </div>
+    <div class="news">
+        <div class="container">
+            <h2>News</h2>
+            {% for post in posts %}
+            <div class="card">
+                <h3 class="card-title">{{ post.title }}</h3>
+                <h4 class="card-date">{{ post.postDate }}</h4>
+                <p class="card-content">{{ post.content|truncatewords:15 }}</p>
+                <a href="{% url 'postDetail' pk=post.pk %}" class="main-button">More</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
