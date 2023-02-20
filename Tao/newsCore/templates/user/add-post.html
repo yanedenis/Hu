@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Add Post
+{% endblock %}
+
+{% block content %}
+<style>
+h2 {
+font-size: 40px;
+padding-bottom: 20px;
+}
+#id_title, #id_image, #id_content {
+padding: 10px;
+border-radius: 10px;
+border: 1px solid black;
+display: block;
+width: 100%;
+margin-top: 5px;
+margin-bottom: 15px;
+font-size: 20px;
+}
+button {
+display: inline-block;
+background-color: brown;
+border: 2px solid brown;
+padding: 10px 40px;
+text-decoration: none;
+color: white;
+border-radius: 15px;
+transition: 0.3s ease-in-out;
+font-size: 20px;
+margin-top: 10px;
+}
+button:hover {
+background-color: white;
+color: brown;
+}
+label {
+font-size: 25px;
+}
+</style>
+
+<div class="content">
+    <div class="container">
+        <h2>Add Post</h2>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form }}
+            <button>Add</button>
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}

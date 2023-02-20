@@ -1,0 +1,40 @@
+{% extends '../base.html' %}
+
+{% block title %}
+Delete Post
+{% endblock %}
+
+{% block content %}
+<style>
+    button, #deletepostno{
+    display: inline-block;
+    background-color: brown;
+    border: 2px solid brown;
+    padding: 10px 40px;
+    text-decoration: none;
+    color: white;
+    border-radius: 15px;
+    transition: 0.3s ease-in-out;
+    font-size: 20px;
+    margin-top: 20px;
+    margin-right: 20px;
+    width: 120px;
+    text-align: center;
+    }
+    button:hover, #deletepostno:hover{
+    background-color: white;
+    color: brown;
+    }
+</style>
+<div class="content">
+    <div class="container">
+    <h1>Delete Post {{ post.title }}?</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <button>Yes</button>
+        <a id="deletepostno" href="{% url 'postDetail' pk=post.pk %}">No</a>
+    </form>
+    </div>
+</div>
+
+{% endblock %}

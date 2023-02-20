@@ -7,27 +7,31 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Hu Tao</title>
+    <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="{% static './css/style.css' %}">
     <link rel="shortcut icon" href="{% static './img/SiteIcon.webp' %}" type="image/x-icon">
 </head>
 <body>
 <header class="header" id="header" style="padding-bottom: 15px;">
     <div class="container">
-        <a href="#" class="burger-menu-button" onclick="burgerMenuAction()"><img
+        <a id="burger-menu-button" class="burger-menu-button" onclick="burgerMenuAction()"><img
                 src="{% static './img/butterfly_menu_icon.webp' %}" width="45px" height="45px"></a>
         <div class="menu-list">
             <img src="{% static './img/butterfly_menu_icon.webp' %}" width="60px">
             <a href="{% url 'homePage' %}">Main</a>
             <a href="{% url 'aboutPage' %}">About</a>
+            <a href="{% url 'allNews' %}" class="allNewsBtn">All News</a>
+            <a href="{% url 'addPost' %}">Add Post</a>
             <a href="https://candybox2.github.io/candybox/" target="_blank">For Fun</a>
-            <a href="#" class="authorization" id="SignUpBtn">Sign Up</a>
+        </div>
+        <div class="menu-list-right">
+            <a id="SignUpBtn">Sign Up</a>
+            <a id="LogInBtn">Log In</a>
         </div>
         <div class="mobile-menu-list" id="mobile-menu-list" style="display: none;">
             <a href="{% url 'homePage' %}">Main</a>
             <a href="{% url 'aboutPage' %}">About</a>
             <a href="https://candybox2.github.io/candybox/" target="_blank">For Fun</a>
-            <a href="#" class="authorization" id="SignUpBtn">Sign Up</a>
         </div>
     </div>
 </header>
@@ -40,29 +44,35 @@
         <p>&copy;Wangsheng Funeral Parlor</p>
     </div>
 </footer>
-<div id="Modal" class="modal">
+<form>
+    <div id="Modal" class="modal">
     <div class="modal-content">
         <div class="modal-header">
             <span class="close">&times;</span>
-            <h2>Sign Up</h2>
+            <p class="modal-sign-up" onclick="SignUpFun()">Sign Up</p>
+            <p class="modal-log-in" onclick="SignUpFun()">Log In</p>
         </div>
         <div class="modal-body">
-            <p>
-                <label for="mname">First name:</label>
-                <input type="text" name="SignUpName" id="SignUpName" placeholder="Enter the name">
-                <label for="memail">Email:</label>
-                <input type="email" name="SignUpEmail" id="SignUpEmail" placeholder="Enter the email">
-                <label for="mpassword">Password:</label>
-                <input type="password" name="SignUpPassword" id="SignUpPassword" placeholder="Enter the password">
-            </p>
-            <button>Sign Up</button>
-        </div>
-        <div class="modal-footer">
-            <h3>Already have acc?</h3>
-            <button>Log In</button>
+            <div class="signup-content" id="signup-content" style="display: block;">
+                <label for="mname">First name</label><br>
+                <input type="text" name="SignUpName" placeholder="Enter the name"><br>
+                <label for="memail">Email</label><br>
+                <input type="email" name="SignUpEmail" placeholder="Enter the email"><br>
+                <label for="mpassword">Password</label><br>
+                <input type="password" name="SignUpPassword" placeholder="Enter the password"><br>
+            </div>
+            <div class="login-content" id="login-content" style="display: none;">
+                <label for="mname">First name/Email</label><br>
+                <input type="text" name="LogInName" placeholder="Enter the name/email"><br>
+                <label for="mpassword">Password</label><br>
+                <input type="password" name="LogInPassword" placeholder="Enter the password"><br>
+            </div>
+            <button type="submit">Sign Up</button>
         </div>
     </div>
-</div>
-<script src="{% static './scripts/script.js' %}"></script>
+    </div>
+</form>
+
+<script src="{% static './js/script.js' %}"></script>
 </body>
 </html>

@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Edit Post
+{% endblock %}
+
+{% block content %}
+<style>
+h2 {
+font-size: 40px;
+padding-bottom: 20px;
+}
+#id_title, #id_image, #id_content {
+padding: 10px;
+border-radius: 10px;
+border: 1px solid black;
+display: block;
+width: 100%;
+margin-top: 5px;
+margin-bottom: 15px;
+font-size: 20px;
+}
+button {
+display: inline-block;
+background-color: brown;
+border: 2px solid brown;
+padding: 10px 40px;
+text-decoration: none;
+color: white;
+border-radius: 15px;
+transition: 0.3s ease-in-out;
+font-size: 20px;
+margin-top: 10px;
+}
+button:hover {
+background-color: white;
+color: brown;
+}
+label {
+font-size: 25px;
+}
+</style>
+<div class="content">
+    <div class="container">
+        <h2>Edit Post</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <label for="id_title">Title:</label>
+            <input value="{{ post.title }}" type="text" name="title" maxlength="255" required="" id="id_title">
+            {% if post.image %}
+            <label for="id_image">Image:</label>
+            <input value="{{ post.image }}" type="text" name="image" maxlength="500" id="id_image">
+            {% else %}
+            <label for="id_image">Image:</label>
+            <input value="" type="text" name="image" maxlength="500" id="id_image">
+            {% endif %}
+            <label for="id_content">Content:</label>
+            <textarea name="content" cols="40" rows="10" required="" id="id_content">
+                {{ post.content }}
+            </textarea>
+
+            <button>Edit</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

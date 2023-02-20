@@ -1,4 +1,6 @@
+{% load static %}
 @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+
 * {
     padding: 0;
     margin: 0;
@@ -13,27 +15,43 @@ body {
     display: flex;
     flex-direction: column;
 }
+::-webkit-scrollbar {
+    display: none;
+}
 
 /* HEADER */
-.container .menu-list{
-    /* margin-left: 60px; */
-    /* margin-right: 60px; */
-    display: contents;
-}
 .header {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    width: 100%;
     list-style-type: none;
     background-color: #8f5049;
     padding: 15px 0;
-    /* position: fixed; */
 }
-.header .menu-list a {
-    /* color: #ddb9af; */
+.header .container a {
     color: white;
     text-decoration: none;
     font-size: 25px;
+    transition: 0.3s ease-in-out
+}
+.header .menu-list {
+    position: relative;
+}
+.header .menu-list-right {
+    position: absolute;
+    top: 30px;
+    right: 50px;
+}
+.header .menu-list a {
     margin-right: 30px;
     vertical-align: 22px;
-    transition: 0.2s ease-in-out;
+}
+.header .menu-list-right a {
+    right: 10px;
+    top: 50%;
+    margin-left: 30px;
+    cursor: pointer;
 }
 .header a:hover {
     color: #ddb9af;
@@ -41,9 +59,6 @@ body {
 .header img {
     margin-left: 60px;
     margin-right: 30px;
-}
-.authorization {
-    margin-left: 68%;
 }
 .mobile-menu-list{
     display: none;
@@ -54,21 +69,20 @@ body {
 
 /* MAIN */
 .main {
-    padding-top: 50px;
     padding-bottom: 100px;
 }
-.main h1 {
+.main h1, .pd-main h1 {
     font-size: 40px;
     color: #382525;
 }
-.main p {
+.main p, .pd-main p {
     text-align: justify;
     margin-top: 30px;
     margin-bottom: 30px;
-    font-size: 20px;
+    font-size: 30px;
     font-weight: 500;
 }
-.main-button {
+.main-button, .pd-main a {
     display: inline-block;
     background-color: brown;
     border: 2px solid brown;
@@ -76,34 +90,46 @@ body {
     text-decoration: none;
     color: white;
     border-radius: 15px;
-    text-align: right;
     transition: 0.3s ease-in-out;
 }
-.main-button:hover{
+.pd-main a {
+    margin-bottom: 40px;
+}
+.pd-main .postedit {
+    margin-bottom: 0px;
+    margin-right: 5px;
+    border-radius: 5px;
+    background-color: #402424;
+    border: 2px solid #402424;
+}
+.pd-main .postedit:hover {
+    color: #402424;
+}
+.main-button:hover, .pd-main a:hover{
     background-color: white;
     color: brown;
 }
-.main .container{
+.main .container, .pd-main .container {
     background-color: rgba(255, 255, 255, 0.4);
     border: 2px solid #d6a995;
     border-radius: 10px;
-    padding: 20px;
+    padding: 30px;
 }
-.about-main {
-    padding-top: 50px;
+.pd-main .container {
+    padding: 40px;
+}
+.container .postdate {
+    text-align: right;
+    font-weight: bold;
 }
 
-.main, .card {
-    margin-left: 50px;
-    margin-right: 50px;
-}
 /* NEWS */
 .card {
-    padding: 20px;
-    border: 3px solid black;
+    padding: 30px;
+    border: 3px solid #382525;
     border-radius: 10px;
-    background-color: rgba(255, 255, 255, 0.4);
-    margin-bottom: 15px;
+    background-color: rgba(255, 255, 255, 0.3);
+    margin-bottom: 20px;
 }
 .news h2 {
     font-size: 40px;
@@ -113,7 +139,7 @@ body {
 }
 .card-title {
     font-size: 30px;
-    margin-bottom: 2px;
+    margin-bottom: 4px;
 }
 .card-content {
     font-size: 20px;
@@ -126,20 +152,17 @@ body {
 
 /* SITE BACKGROUND */
 .content {
+    padding-top: 50px;
+    padding-left: 50px;
+    padding-right: 50px;
     padding-bottom: 100px;
-    /background-image: url("{% static './img/background.png' %}");
+    background-image: url("/static/img/background.png");
+    background-repeat: no-repeat;
+    background-color: #fbd3b4;
     background-position: center;
-    background-size: cover;
+    background-size: auto;
     background-attachment: fixed;
     flex: 1 0 auto;
-}
-.sticky {
-    position: fixed;
-    top: 0;
-    width: 100%;
-}
-.sticky + .content {
-    padding-top: 98px;
 }
 
 /* FOOTER */
@@ -168,32 +191,59 @@ body {
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 .modal-content {
-    background-color: #fefefe;
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
-    border-radius: 12px;
+    border-radius: 10px;
     width: 30%; /* Could be more or less, depending on screen size */
 }
 .modal-header {
-    padding: 10px auto;
-    background-color: #924f49;
-    color: white;
-    border-radius: 10px 10px 0 0;
+    padding: 20px 30px;
+    color: black;
+}
+.modal-header p {
+    display: block;
+    font-size: 30px;
+    float: left;
+    padding-right: 20px;
+    cursor: pointer;
 }
 .modal-body {
-    padding: 2px 16px;
+    padding: 50px 30px 0;
+    font-size: 20px;
+    text-align: center;
 }
-.modal-footer {
-    padding: 2px 16px;
-    background-color: #924f49;
+.modal-body .signup-content {
+    display: block;
+}
+.modal-body .login-content {
+    display: none;
+}
+.modal-body input {
+    padding: 5px 5px;
+    margin: 5px 0;
+    border-radius: 5px;
+}
+.modal-content button {
+    border: 2px solid brown;
+    text-decoration: none;
+    padding: 13px 35px;
     color: white;
-    border-radius: 0 0 10px 10px;
+    background-color: brown;
+    border-radius: 15px;
+    font-size: 14px;
+    transition: 0.5s;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+.modal-content button:hover {
+    color: brown;
+    background-color: white;
 }
 .modal-content {
     position: relative;
     background-color: #fefefe;
-    margin: 20% auto;
+    margin: center auto;
     padding: 0;
     border: 1px solid #888;
     width: 30%;
@@ -218,47 +268,135 @@ body {
     cursor: pointer;
 }
 
-@media screen and (max-width: 400px) {
+
+
+@media screen and (max-width: 430px) {
     .container {
         margin-left: 0px;
         margin-right: 0px;
     }
 
-    .header img {
-        margin-top: 10px;
-    }
-
-    /* MENU */
+    /* HEADER */
     .menu-list {
+        display: none;
+    }
+    .menu-list-right {
         display: none;
     }
     .mobile-menu-list {
         display: block;
-        padding: 10px 30px;
-        margin-top: 10px;
+        text-align: center;
         background-color: #6B3C37;
-    }
-    .mobile-menu-list a {
-        display: block;
-        font-size: 20px;
-        margin-top: 5px;
     }
     .burger-menu-button {
         display: block;
         margin-left: 30px;
     }
+    .header .container .mobile-menu-list a {
+        font-size: 20px;
+        display: block;
+        width: 100%;
+        text-align: center;
+        margin-right: 0;
+        padding: 10px 0;
+        border: 1px solid #512D27;
+    }
+    .header a.burger-menu-button {
+        text-align: left;
+    }
+    .header img {
+        margin-left: 0px;
+        margin-top: 5px;
+    }
+    .header .container .authorization {
+        font-size: 20px;
+        top: 14px;
+        right: 0%;
+    }
 
     /* MAIN */
-    .about-main {
-        padding: 30px;
-    }
     .content {
-        padding: 0 30px;
+        padding: 30px 30px;
+        background-color: #fbd3b4;
+        background-size: auto;
     }
-    .news {
+    .main {
         padding-bottom: 30px;
     }
+    .main h1, .pd-main h1 {
+        font-size: 30px;
+    }
+    .main .container, .pd-main.container {
+        padding: 15px;
+    }
+    .main p, .pd-main p {
+        font-size: 17px;
+        margin: 17px 0;
+    }
+    .main-button, .pd-main a {
+        padding: 8px 28px;
+    }
 
+    /* CARD */
+    .news h2 {
+        font-size: 30px;
+    }
+    .news {
+        padding-bottom: 0px;
+    }
+    .card {
+        padding: 15px;
+    }
+    .card-title {
+        font-size: 26px;
+    }
+    .card-date {
+        font-size: 17px;
+    }
+    .card-content {
+        font-size: 17px;
+        margin-bottom: 25px;
+    }
+
+    /* POST DETAIL */
+    .pd-main .container {
+        padding: 15px;
+    }
+    .container .postdate {
+        font-size: 15px;
+        margin: 15px 0 0
+    }
+    .pd-main a {
+        margin: 0px 0px 20px;
+    }
+
+    /* MODAL */
+    .modal-content {
+        width: 80%;
+        margin: 50% auto;
+    }
+    .modal-header {
+        padding: 20px 20px;
+    }
+    .modal-header p {
+        font-size: 21px;
+    }
+    .close {
+        font-size: 21px;
+    }
+    .modal-body {
+        padding: 40px 0px 0;
+        font-size: 18px;
+    }
+    .modal-content button {
+        border-radius: 15px;
+        padding: 8px 28px;
+    }
+
+    /* FOOTER */
+    .footer p {
+        margin-left: 0px;
+    }
     .footer {
         font-size: 13px;
         padding: 40px 30px;

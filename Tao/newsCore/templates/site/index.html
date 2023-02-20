@@ -1,0 +1,31 @@
+{% extends '../base.html' %}
+
+{% block title %}
+Hu
+{% endblock %}
+
+{% block content %}
+
+<div class="content">
+    <div class="main">
+        <div class="container">
+            <h1>Tao</h1>
+            <p>Info bout Hu Tao on HoyoWiki</p>
+            <a href="https://wiki.hoyolab.com/pc/genshin/entry/34" target="_blank" class="main-button">Watch</a>
+        </div>
+    </div>
+    <div class="news">
+        <div class="container">
+            <h2>Last News</h2>
+            {% for post in posts %}
+            <div class="card">
+                <h3 class="card-title">{{ post.title }}</h3>
+                <h4 class="card-date">{{ post.postDate }}</h4>
+                <a href="{% url 'postDetail' pk=post.pk %}" class="main-button">More</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
